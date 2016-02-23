@@ -1,0 +1,46 @@
+#!/bin/bash
+# Date : 2016-02-23 13:37
+# Last revision : 2016-02-23 13:44
+# Wine version used : 1.6.2
+# Distribution used to test : Manjaro Mate
+# Author : Sylvain POULAIN
+[ "$PLAYONLINUX" = "" ] && exit 0
+source "$PLAYONLINUX/lib/sources"
+
+TITLE="SAS Planet"
+PREFIX="sas.planet"
+SHORTCUT_NAME="SASPlanet"
+ 
+POL_SetupWindow_Init
+
+POL_SetupWindow_presentation "$TITLE" "SAS.Team" "https://bitbucket.org/sas_team/sas.planet.bin" "Sylvain POULAIN" "$TITLE"
+
+POL_Wine_SelectPrefix "$PREFIX"
+POL_Wine_PrefixCreate "1.6.2"
+Set_OS "win7" 
+POL_System_TmpCreate "$PREFIX"
+ 
+POL_SetupWindow_InstallMethod "LOCAL,DOWNLOAD"
+ 
+if [ "$INSTALL_METHOD" = "LOCAL" ]
+then
+    POL_SetupWindow_browse "Please select the installation file to run." "$TITLE installation"
+    POL_SetupWindow_wait "Installation in progress." "$TITLE installation"
+    cp "$APP_ANSWER" "$POL_System_TmpDir"
+	cd "$POL_System_TmpDir"
+	unzip SAS.Planet.Release.151111.zip
+	cp -rf SAS.Planet.Release.151111 $WINEPREFIX/drive_c/Program\ Files/SAS.Planet 
+elif [ "$INSTALL_METHOD" = "LOCAL,DOWNLOAD" ]
+then
+    cd "$POL_System_TmpDir"
+    POL_Download "https://bitbucket.org/sas_team/sas.planet.bin/downloads/SAS.Planet.Release.151111.zip"
+	unzip SAS.Planet.Release.151111.zip 
+	cp -rf SAS.Planet.Release.151111 $WINEPREFIX/drive_c/Program\ Files/SAS.Planet
+fi
+ 
+POL_System_TmpDelete
+ 
+POL_Shortcut "SASPlanet.exe" "SASPlanet"
+ 
+POL_SetupWindow_Close
+exit
