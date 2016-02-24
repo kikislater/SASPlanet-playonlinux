@@ -30,7 +30,7 @@ then
 	cd "$POL_System_TmpDir"
 	unzip SAS.Planet.Release.151111.zip
 	cp -rf SAS.Planet.Release.151111 $WINEPREFIX/drive_c/Program\ Files/SAS.Planet 
-elif [ "$INSTALL_METHOD" = "LOCAL,DOWNLOAD" ]
+elif [ "$INSTALL_METHOD" = "DOWNLOAD" ]
 then
     cd "$POL_System_TmpDir"
     POL_Download "https://bitbucket.org/sas_team/sas.planet.bin/downloads/SAS.Planet.Release.151111.zip"
