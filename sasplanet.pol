@@ -17,7 +17,7 @@ POL_SetupWindow_presentation "$TITLE" "SAS.Team" "https://bitbucket.org/sas_team
 
 POL_Wine_SelectPrefix "$PREFIX"
 POL_Wine_PrefixCreate "1.6.2"
-Set_OS "win7" 
+Set_OS "winxp" 
 POL_System_TmpCreate "$PREFIX"
  
 POL_SetupWindow_InstallMethod "LOCAL,DOWNLOAD"
